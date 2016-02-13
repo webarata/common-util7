@@ -7,7 +7,21 @@ import java.io.InputStream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+/**
+ * 入出力関連のユーティリティ
+ * 
+ * @author arata
+ */
 public class IoUtil {
+    /**
+     * InputStreamからバイナリデータの読み込み
+     * 
+     * @param is
+     *            読み込むInputStream
+     * @return 読み込んだ結果
+     * @throws IOException
+     *             発生する例外
+     */
     @Nullable
     public static byte[] readByteAndClose(@Nonnull InputStream is) throws IOException {
         byte[] result = null;
