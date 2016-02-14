@@ -20,4 +20,9 @@ public class StringUtilTest {
     public void isEmptyのABCの場合() {
         assertThat(StringUtil.isEmpty("ABC"), is(false));
     }
+
+    @Test
+    public void isEmptyのあの場合() {
+        assertThat(StringUtil.isEmpty("あ"), is(false));
+    }
 }
