@@ -1,5 +1,7 @@
 package link.arata.common.util;
 
+import javax.annotation.Nullable;
+
 /**
  * String関連のユーティリティクラス
  * 
@@ -13,7 +15,7 @@ public class StringUtil {
      *            検査する文字列
      * @return 文字列がnullもしくは空文字列の場合true
      */
-    public static boolean isEmpty(String target) {
+    public static boolean isEmpty(@Nullable String target) {
         if (target == null) {
             return true;
         }
