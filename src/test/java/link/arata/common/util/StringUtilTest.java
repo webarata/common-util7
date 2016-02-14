@@ -10,4 +10,14 @@ public class StringUtilTest {
     public void isEmptyのnullの場合() {
         assertThat(StringUtil.isEmpty(null), is(true));
     }
+
+    @Test
+    public void isEmptyの空文字の場合() {
+        assertThat(StringUtil.isEmpty(""), is(true));
+    }
+
+    @Test
+    public void isEmptyのABCの場合() {
+        assertThat(StringUtil.isEmpty("ABC"), is(false));
+    }
 }
