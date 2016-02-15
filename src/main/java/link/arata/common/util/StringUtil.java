@@ -63,4 +63,17 @@ public class StringUtil {
 
         return target.substring(0, i + 1);
     }
+
+    /**
+     * 文字列の両端の空白とそれに準ずる文字の連続を取り除く
+     * 
+     * @param target
+     *            対象の文字列
+     * @return 右側をtrimした結果の文字列
+     */
+    @Nonnull
+    public static String trim(@Nonnull String target) {
+        String trimString = trimLeft(target);
+        return trimRight(trimString);
+    }
 }

@@ -99,4 +99,37 @@ public class StringUtilTest {
     public void trimRightで空文字の場合() {
         assertThat(StringUtil.trimRight(""), is(""));
     }
+
+    @Test
+    public void trimの半角ブランクがtrimされること() {
+        assertThat(StringUtil.trim(" あいうえお "), is("あいうえお"));
+    }
+
+    @Test
+    public void trim全角ブランクがtrimされること() {
+        assertThat(StringUtil.trim("　あいうえお　"), is("あいうえお"));
+    }
+
+    @Test
+    public void trimのタブがtrimされること() {
+        assertThat(StringUtil.trim("\tあいうえお\t"), is("あいうえお"));
+    }
+
+    @Test
+    public void trimの改行がtrimされること() {
+        assertThat(StringUtil.trim("\nあいうえお\n"), is("あいうえお"));
+    }
+
+    @Test
+    public void trimのいろいろ混ざった場合にtrimされること() {
+        assertThat(StringUtil.trim(" 　\t\nあいうえお 　\t\n"), is("あいうえお"));
+    }
+
+    public void trimですべての文字が対象の場合() {
+        assertThat(StringUtil.trimRight(" 　\t\n"), is(""));
+    }
+
+    public void trimで空文字の場合() {
+        assertThat(StringUtil.trim(""), is(""));
+    }
 }
