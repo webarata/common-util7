@@ -1,5 +1,6 @@
 package link.arata.common.util;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -23,5 +24,16 @@ public class StringUtil {
             return true;
         }
         return false;
+    }
+
+    public static String trimLeft(@Nonnull String target) {
+        int i = 0;
+        for (; i < target.length(); i++) {
+            if (!Character.isWhitespace(target.charAt(i))) {
+                break;
+            }
+        }
+
+        return target.substring(i);
     }
 }
