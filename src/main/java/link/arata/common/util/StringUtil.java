@@ -26,6 +26,14 @@ public class StringUtil {
         return false;
     }
 
+    /**
+     * 文字列の左側の空白とそれに準ずる文字の連続を取り除く
+     * 
+     * @param target
+     *            対象の文字列
+     * @return 左側をtrimした結果の文字列
+     */
+    @Nonnull
     public static String trimLeft(@Nonnull String target) {
         int i = 0;
         for (; i < target.length(); i++) {
@@ -35,5 +43,24 @@ public class StringUtil {
         }
 
         return target.substring(i);
+    }
+
+    /**
+     * 文字列の右側の空白とそれに準ずる文字の連続を取り除く
+     * 
+     * @param target
+     *            対象の文字列
+     * @return 右側をtrimした結果の文字列
+     */
+    @Nonnull
+    public static String trimRight(@Nonnull String target) {
+        int i = target.length() - 1;
+        for (; i >= 0; i--) {
+            if (!Character.isWhitespace(target.charAt(i))) {
+                break;
+            }
+        }
+
+        return target.substring(0, i + 1);
     }
 }
