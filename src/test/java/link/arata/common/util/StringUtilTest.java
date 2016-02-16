@@ -27,6 +27,26 @@ public class StringUtilTest {
     }
 
     @Test
+    public void isNotEmptyのnullの場合() {
+        assertThat(StringUtil.isNotEmpty(null), is(false));
+    }
+
+    @Test
+    public void isNotEmptyの空文字の場合() {
+        assertThat(StringUtil.isNotEmpty(""), is(false));
+    }
+
+    @Test
+    public void isNotEmptyのABCの場合() {
+        assertThat(StringUtil.isNotEmpty("ABC"), is(true));
+    }
+
+    @Test
+    public void isNotEmptyのあの場合() {
+        assertThat(StringUtil.isNotEmpty("あ"), is(true));
+    }
+
+    @Test
     public void trimLeftの半角ブランクがtrimされること() {
         assertThat(StringUtil.trimLeft(" あいうえお"), is("あいうえお"));
     }
