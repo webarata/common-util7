@@ -27,6 +27,17 @@ public class StringUtil {
     }
 
     /**
+     * 文字列がnullや空文字でないことをチェックする
+     * 
+     * @param target
+     *            検査する文字列
+     * @return 文字列がnullもしくは空文字列でない場合true
+     */
+    public static boolean isNotEmpty(@Nullable String target) {
+        return !isEmpty(target);
+    }
+
+    /**
      * 文字列の左側の空白とそれに準ずる文字の連続を取り除く
      * 
      * @param target
