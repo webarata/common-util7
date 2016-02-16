@@ -146,8 +146,13 @@ public class StringUtilTest {
     }
 
     @Test
-    public void trimの改行がtrimされること() {
+    public void trimのLFがtrimされること() {
         assertThat(StringUtil.trim("\nあいうえお\n"), is("あいうえお"));
+    }
+
+    @Test
+    public void trimのCRがtrimされること() {
+        assertThat(StringUtil.trim("\rあいうえお\r"), is("あいうえお"));
     }
 
     @Test
