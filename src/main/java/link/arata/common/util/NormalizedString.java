@@ -40,4 +40,31 @@ public class NormalizedString {
     public int length() {
         return normalizedString.codePointCount(0, normalizedString.length());
     }
+
+    /**
+     * 指定された位置の文字を返す
+     * 
+     * @param index
+     *            インデックス
+     * @return 文字
+     * @throws IndexOutOfBoundsException
+     *             文字列の範囲外へのアクセスの場合
+     */
+    public String charAt(int index) {
+        if (index <= -1 || index >= length()) {
+            throw new IndexOutOfBoundsException("index: " + index);
+        }
+
+        int codePoint;
+        for (int i = 0; i < originalString.length(); i++) {
+            codePoint = normalizedString.codePointAt(i);
+            if (i == index) {
+                break;
+            }
+            if (codePoint > 0xFFFF) {
+                index++;
+            }
+        }
+        return new String(new int[] { normalizedString.codePointAt(index) }, 0, 1);
+    }
 }
