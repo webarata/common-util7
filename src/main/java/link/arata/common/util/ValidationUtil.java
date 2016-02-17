@@ -13,7 +13,7 @@ public class ValidationUtil {
     private static TrimType DEFAULT_TRIM_TYPE = TrimType.BOTH;
 
     /**
-     * デフォルトのTrim方向を決める。明示しない場合には、このTrimが使用される。
+     * デフォルトのtrim方向を決める。明示しない場合には、このTrimが使用される。
      * 
      * @param defaultTrim
      */
