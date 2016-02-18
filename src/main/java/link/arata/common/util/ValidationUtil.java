@@ -82,4 +82,36 @@ public class ValidationUtil {
     public static boolean minLength(@Nonnull String target, int length) {
         return minLength(target, length, DEFAULT_TRIM_TYPE);
     }
+
+    /**
+     * 最大文字数のチェックをする
+     * 
+     * @param target
+     *            検査する文字列
+     * @param length
+     *            最大文字数
+     * @param trimType
+     *            検査前に行うtrimの種類
+     * @return 最大文字数以上の場合true
+     */
+    public static boolean maxLength(@Nonnull String target, int length, @Nonnull TrimType trimType) {
+        String trimTarget = trimType.trim(target);
+        NormalizedString normalizedString = new NormalizedString(trimTarget);
+        return normalizedString.length() <= length;
+    }
+
+    /**
+     * デフォルトのTrimTypeを使用し最大文字数のチェックをする
+     * 
+     * @param target
+     *            検査する文字列
+     * @param length
+     *            最大文字数
+     * @param trimType
+     *            検査前に行うtrimの種類
+     * @return 最大文字数以上の場合true
+     */
+    public static boolean maxLength(@Nonnull String target, int length) {
+        return maxLength(target, length, DEFAULT_TRIM_TYPE);
+    }
 }
