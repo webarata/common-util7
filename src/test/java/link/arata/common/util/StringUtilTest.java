@@ -160,10 +160,12 @@ public class StringUtilTest {
         assertThat(StringUtil.trim(" 　\t\nあいうえお 　\t\n"), is("あいうえお"));
     }
 
+    @Test
     public void trimですべての文字が対象の場合() {
         assertThat(StringUtil.trimRight(" 　\t\n"), is(""));
     }
 
+    @Test
     public void trimで空文字の場合() {
         assertThat(StringUtil.trim(""), is(""));
     }
