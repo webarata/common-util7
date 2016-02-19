@@ -14,22 +14,22 @@ public enum TrimType {
     /**
      * 指定のtrimをかける
      * 
-     * @param target
+     * @param value
      *            trim対象の文字列
      * @return trimした文字列
      */
-    public @Nonnull String trim(@Nonnull String target) {
+    public @Nonnull String trim(@Nonnull String value) {
         switch (this) {
         case BOTH:
-            return StringUtil.trim(target);
+            return StringUtil.trim(value);
         case LEFT:
-            return StringUtil.trimLeft(target);
+            return StringUtil.trimLeft(value);
         case RIGHT:
-            return StringUtil.trimRight(target);
+            return StringUtil.trimRight(value);
         case NONE:
-            return target;
+            return value;
         }
         // ありえない
-        return target;
+        return value;
     }
 }
