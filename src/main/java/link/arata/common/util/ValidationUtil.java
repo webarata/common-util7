@@ -25,36 +25,36 @@ public class ValidationUtil {
     /**
      * 必須チェックをする
      * 
-     * @param target
+     * @param value
      *            検査する文字列
      * @param trimType
      *            検査前に行うtrimの種類
      * @return 空文字列かnullの場合false
      */
-    public static boolean required(@Nullable String target, @Nonnull TrimType trimType) {
-        if (target == null) {
+    public static boolean required(@Nullable String value, @Nonnull TrimType trimType) {
+        if (value == null) {
             return false;
         }
-        String trimTarget = trimType.trim(target);
+        String trimValue = trimType.trim(value);
 
-        return StringUtil.isNotEmpty(trimTarget);
+        return StringUtil.isNotEmpty(trimValue);
     }
 
     /**
      * デフォルトのTrimTypeを使用した必須チェック
      * 
-     * @param target
+     * @param value
      *            検査する文字列
      * @return 空文字列かnullの場合false
      */
-    public static boolean required(@Nullable String target) {
-        return required(target, DEFAULT_TRIM_TYPE);
+    public static boolean required(@Nullable String value) {
+        return required(value, DEFAULT_TRIM_TYPE);
     }
 
     /**
      * 最小文字数のチェックをする
      * 
-     * @param target
+     * @param value
      *            検査する文字列
      * @param length
      *            最小文字数
@@ -62,16 +62,16 @@ public class ValidationUtil {
      *            検査前に行うtrimの種類
      * @return 最小文字数以上の場合true
      */
-    public static boolean minLength(@Nonnull String target, int length, @Nonnull TrimType trimType) {
-        String trimTarget = trimType.trim(target);
-        NormalizedString normalizedString = new NormalizedString(trimTarget);
+    public static boolean minLength(@Nonnull String value, int length, @Nonnull TrimType trimType) {
+        String trimValue = trimType.trim(value);
+        NormalizedString normalizedString = new NormalizedString(trimValue);
         return normalizedString.length() >= length;
     }
 
     /**
      * デフォルトのTrimTypeを使用し最小文字数のチェックをする
      * 
-     * @param target
+     * @param value
      *            検査する文字列
      * @param length
      *            最小文字数
@@ -79,14 +79,14 @@ public class ValidationUtil {
      *            検査前に行うtrimの種類
      * @return 最小文字数以上の場合true
      */
-    public static boolean minLength(@Nonnull String target, int length) {
-        return minLength(target, length, DEFAULT_TRIM_TYPE);
+    public static boolean minLength(@Nonnull String value, int length) {
+        return minLength(value, length, DEFAULT_TRIM_TYPE);
     }
 
     /**
      * 最大文字数のチェックをする
      * 
-     * @param target
+     * @param value
      *            検査する文字列
      * @param length
      *            最大文字数
@@ -94,16 +94,16 @@ public class ValidationUtil {
      *            検査前に行うtrimの種類
      * @return 最大文字数以上の場合true
      */
-    public static boolean maxLength(@Nonnull String target, int length, @Nonnull TrimType trimType) {
-        String trimTarget = trimType.trim(target);
-        NormalizedString normalizedString = new NormalizedString(trimTarget);
+    public static boolean maxLength(@Nonnull String value, int length, @Nonnull TrimType trimType) {
+        String trimValue = trimType.trim(value);
+        NormalizedString normalizedString = new NormalizedString(trimValue);
         return normalizedString.length() <= length;
     }
 
     /**
      * デフォルトのTrimTypeを使用し最大文字数のチェックをする
      * 
-     * @param target
+     * @param value
      *            検査する文字列
      * @param length
      *            最大文字数
@@ -111,7 +111,7 @@ public class ValidationUtil {
      *            検査前に行うtrimの種類
      * @return 最大文字数以上の場合true
      */
-    public static boolean maxLength(@Nonnull String target, int length) {
-        return maxLength(target, length, DEFAULT_TRIM_TYPE);
+    public static boolean maxLength(@Nonnull String value, int length) {
+        return maxLength(value, length, DEFAULT_TRIM_TYPE);
     }
 }
