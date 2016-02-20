@@ -87,4 +87,35 @@ public class StringUtil {
         String trimValue = trimLeft(value);
         return trimRight(trimValue);
     }
+
+    /**
+     * 改行文字を指定の改行文字に正規化する
+     * 
+     * @param value
+     *            対象の文字列
+     * @param lineBreakType
+     *            改行文字
+     * @return
+     */
+    @Nonnull
+    public static String normalizeLineBreak(@Nonnull String value, @Nonnull LineBreakType lineBreakType) {
+        // LFに正規化してから、指定の改行コードに正規化する
+        value = value.replace(LineBreakType.CRLF.getPhysicalString(), LineBreakType.LF.getPhysicalString());
+        value = value.replace(LineBreakType.CR.getPhysicalString(), LineBreakType.LF.getPhysicalString());
+
+        switch (lineBreakType) {
+        case CRLF:
+            value = value.replace(LineBreakType.LF.getPhysicalString(), LineBreakType.CRLF.getPhysicalString());
+            break;
+        case CR:
+            value = value.replace(LineBreakType.LF.getPhysicalString(), LineBreakType.CR.getPhysicalString());
+            break;
+        case LF:
+            break;
+        default:
+            break;
+        }
+
+        return value;
+    }
 }

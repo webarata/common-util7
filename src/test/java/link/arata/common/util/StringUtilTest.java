@@ -169,4 +169,28 @@ public class StringUtilTest {
     public void trimで空文字の場合() {
         assertThat(StringUtil.trim(""), is(""));
     }
+
+    @Test
+    public void normalizeLineBreakでCRに変換する場合() {
+        String target = "test\r\ntest\ntest\r";
+        String expected = "test\rtest\rtest\r";
+
+        assertThat(StringUtil.normalizeLineBreak(target, LineBreakType.CR), is(expected));
+    }
+
+    @Test
+    public void normalizeLineBreakでLFに変換する場合() {
+        String target = "test\r\ntest\ntest\r";
+        String expected = "test\ntest\ntest\n";
+
+        assertThat(StringUtil.normalizeLineBreak(target, LineBreakType.LF), is(expected));
+    }
+
+    @Test
+    public void normalizeLineBreakでCRLFに変換する場合() {
+        String target = "test\r\ntest\ntest\r";
+        String expected = "test\r\ntest\r\ntest\r\n";
+
+        assertThat(StringUtil.normalizeLineBreak(target, LineBreakType.CRLF), is(expected));
+    }
 }
