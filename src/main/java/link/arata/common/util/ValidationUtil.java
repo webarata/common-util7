@@ -120,4 +120,16 @@ public class ValidationUtil {
     public static boolean maxLength(@Nonnull String value, int length) {
         return maxLength(value, length, DEFAULT_LINE_BREAK_TYPE, DEFAULT_TRIM_TYPE);
     }
+
+    public static boolean isInt(@Nullable String value) {
+        if (value == null) {
+            return false;
+        }
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
