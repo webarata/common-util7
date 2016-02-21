@@ -121,15 +121,14 @@ public class ValidationUtil {
         return maxLength(value, length, DEFAULT_LINE_BREAK_TYPE, DEFAULT_TRIM_TYPE);
     }
 
-    public static boolean isInt(@Nullable String value) {
-        if (value == null) {
-            return false;
-        }
-        try {
-            Integer.parseInt(value);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    /**
+     * 整数であるかをチェックする
+     * 
+     * @param value
+     *            検査する文字列
+     * @return 整数の場合true
+     */
+    public static boolean isInt(@Nonnull String value) {
+        return NumberUtil.formatInt(value) != null;
     }
 }

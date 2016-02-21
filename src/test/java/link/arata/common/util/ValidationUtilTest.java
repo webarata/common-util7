@@ -179,4 +179,16 @@ public class ValidationUtilTest {
     public void maxLengthで半角ブランク3つでtrimせず4文字以下の場合() {
         assertThat(ValidationUtil.maxLength("   ", 4, LineBreakType.CRLF, TrimType.NONE), is(true));
     }
+
+    public void isIntで123の場合() {
+        assertThat(ValidationUtil.isInt("123"), is(true));
+    }
+
+    public void isIntでマイナス123の場合() {
+        assertThat(ValidationUtil.isInt("-123"), is(true));
+    }
+
+    public void isIntで1点0の場合() {
+        assertThat(ValidationUtil.isInt("1.0"), is(false));
+    }
 }
