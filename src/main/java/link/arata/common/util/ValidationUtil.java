@@ -13,6 +13,8 @@ import javax.annotation.Nullable;
 public class ValidationUtil {
     private static TrimType DEFAULT_TRIM_TYPE = TrimType.BOTH;
 
+    private static LineBreakType DEFAULT_LINE_BREAK_TYPE = LineBreakType.LF;
+
     /**
      * デフォルトのtrim方向を決める。明示しない場合には、このTrimが使用される。
      * 
@@ -58,29 +60,31 @@ public class ValidationUtil {
      *            検査する文字列
      * @param length
      *            最小文字数
+     * @param lineBreakType
+     *            正規化する改行コード
      * @param trimType
      *            検査前に行うtrimの種類
      * @return 最小文字数以上の場合true
      */
-    public static boolean minLength(@Nonnull String value, int length, @Nonnull TrimType trimType) {
-        String trimValue = trimType.trim(value);
-        NormalizedString normalizedString = new NormalizedString(trimValue);
+    public static boolean minLength(@Nonnull String value, int length, @Nonnull LineBreakType lineBreakType,
+            @Nonnull TrimType trimType) {
+        value = trimType.trim(value);
+        value = StringUtil.normalizeLineBreak(value, lineBreakType);
+        NormalizedString normalizedString = new NormalizedString(value);
         return normalizedString.length() >= length;
     }
 
     /**
-     * デフォルトのTrimTypeを使用し最小文字数のチェックをする
+     * デフォルトのLineBreakType、TrimTypeを使用し最小文字数のチェックをする
      * 
      * @param value
      *            検査する文字列
      * @param length
      *            最小文字数
-     * @param trimType
-     *            検査前に行うtrimの種類
      * @return 最小文字数以上の場合true
      */
     public static boolean minLength(@Nonnull String value, int length) {
-        return minLength(value, length, DEFAULT_TRIM_TYPE);
+        return minLength(value, length, DEFAULT_LINE_BREAK_TYPE, DEFAULT_TRIM_TYPE);
     }
 
     /**
@@ -92,26 +96,28 @@ public class ValidationUtil {
      *            最大文字数
      * @param trimType
      *            検査前に行うtrimの種類
+     * @param lineBreakType
+     *            正規化する改行コード
      * @return 最大文字数以上の場合true
      */
-    public static boolean maxLength(@Nonnull String value, int length, @Nonnull TrimType trimType) {
-        String trimValue = trimType.trim(value);
-        NormalizedString normalizedString = new NormalizedString(trimValue);
+    public static boolean maxLength(@Nonnull String value, int length, @Nonnull LineBreakType lineBreakType,
+            @Nonnull TrimType trimType) {
+        value = trimType.trim(value);
+        value = StringUtil.normalizeLineBreak(value, lineBreakType);
+        NormalizedString normalizedString = new NormalizedString(value);
         return normalizedString.length() <= length;
     }
 
     /**
-     * デフォルトのTrimTypeを使用し最大文字数のチェックをする
+     * デフォルトのLineBreakType、TrimTypeを使用し最大文字数のチェックをする
      * 
      * @param value
      *            検査する文字列
      * @param length
      *            最大文字数
-     * @param trimType
-     *            検査前に行うtrimの種類
      * @return 最大文字数以上の場合true
      */
     public static boolean maxLength(@Nonnull String value, int length) {
-        return maxLength(value, length, DEFAULT_TRIM_TYPE);
+        return maxLength(value, length, DEFAULT_LINE_BREAK_TYPE, DEFAULT_TRIM_TYPE);
     }
 }
