@@ -82,15 +82,15 @@ public class ValidationUtilTest {
     }
 
     public void minLengthで半角ブランク3つでtrimせず2文字以上の場合() {
-        assertThat(ValidationUtil.minLength("   ", 2, TrimType.NONE), is(true));
+        assertThat(ValidationUtil.minLength("   ", 2, LineBreakType.CRLF, TrimType.NONE), is(true));
     }
 
     public void minLengthで半角ブランク3つでtrimせず3文字以上の場合() {
-        assertThat(ValidationUtil.minLength("   ", 3, TrimType.NONE), is(true));
+        assertThat(ValidationUtil.minLength("   ", 3, LineBreakType.CRLF, TrimType.NONE), is(true));
     }
 
     public void minLengthで半角ブランク3つでtrimせず4文字以上の場合() {
-        assertThat(ValidationUtil.minLength("   ", 4, TrimType.NONE), is(false));
+        assertThat(ValidationUtil.minLength("   ", 4, LineBreakType.CRLF, TrimType.NONE), is(false));
     }
 
     @Test
@@ -139,14 +139,14 @@ public class ValidationUtilTest {
     }
 
     public void maxLengthで半角ブランク3つでtrimせず2文字以上の場合() {
-        assertThat(ValidationUtil.maxLength("   ", 2, TrimType.NONE), is(false));
+        assertThat(ValidationUtil.maxLength("   ", 2, LineBreakType.CRLF, TrimType.NONE), is(false));
     }
 
     public void maxLengthで半角ブランク3つでtrimせず3文字以上の場合() {
-        assertThat(ValidationUtil.maxLength("   ", 3, TrimType.NONE), is(true));
+        assertThat(ValidationUtil.maxLength("   ", 3, LineBreakType.CRLF, TrimType.NONE), is(true));
     }
 
     public void maxLengthで半角ブランク3つでtrimせず4文字以上の場合() {
-        assertThat(ValidationUtil.maxLength("   ", 4, TrimType.NONE), is(true));
+        assertThat(ValidationUtil.maxLength("   ", 4, LineBreakType.CRLF, TrimType.NONE), is(true));
     }
 }
