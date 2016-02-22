@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'maven'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.7
@@ -30,6 +31,14 @@ task sourcesJar(type: Jar) {
 artifacts {
   archives jar
   archives sourcesJar
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      repository(url: uri(getProperty('mavenRepository')))
+    }
+  }
 }
 
 apply plugin: 'jacoco'
