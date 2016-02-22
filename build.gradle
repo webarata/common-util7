@@ -14,6 +14,24 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-core:1.3'
 }
 
+group = 'link.arata.common'
+version = '0.1.0'
+
+jar {
+  baseName = 'common-util7'
+}
+
+/* Source作成用のタスク */
+task sourcesJar(type: Jar) {
+  from sourceSets.main.allSource
+  classifier = 'sources'
+}
+
+artifacts {
+  archives jar
+  archives sourcesJar
+}
+
 apply plugin: 'jacoco'
 
 jacocoTestReport {
