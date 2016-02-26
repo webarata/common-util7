@@ -19,9 +19,20 @@ public class ValidationUtil {
      * デフォルトのtrim方向を決める。明示しない場合には、このTrimが使用される。
      * 
      * @param defaultTrim
+     *            デフォルトのtrim方向
      */
     public static void setDefaultTrim(@Nonnull TrimType defaultTrimType) {
         DEFAULT_TRIM_TYPE = defaultTrimType;
+    }
+
+    /**
+     * デフォルトの改行コードを決める。
+     * 
+     * @param lineBreakType
+     *            デフォルトの改行コード
+     */
+    public static void setDefaultLineBreakType(@Nonnull LineBreakType lineBreakType) {
+        DEFAULT_LINE_BREAK_TYPE = lineBreakType;
     }
 
     /**
