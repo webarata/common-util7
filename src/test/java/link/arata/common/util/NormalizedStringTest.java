@@ -71,4 +71,22 @@ public class NormalizedStringTest {
         NormalizedString str = new NormalizedString("野𠮷丄");
         assertThat(str.charAt(2), is("丄"));
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void charAtでテストの範囲外のエラー() {
+        NormalizedString str = new NormalizedString("テスト");
+        str.charAt(3);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void charAtで𠮷野家の範囲外のエラー() {
+        NormalizedString str = new NormalizedString("𠮷野家");
+        str.charAt(4);
+    }
+
+    @Test
+    public void getOriginalStringで𠮷野家の場合() {
+        NormalizedString str = new NormalizedString("𠮷野家");
+        assertThat(str.getOriginalString(), is("𠮷野家"));
+    }
 }
