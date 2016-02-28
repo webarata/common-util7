@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ValidationUtilTest {
+public abstract class ValidationUtilTest {
     @Test
     public void requiredがnullの場合() {
         assertThat(ValidationUtil.required(null), is(false));
