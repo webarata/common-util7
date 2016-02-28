@@ -37,6 +37,12 @@ public class ValidationUtilTest {
     }
 
     @Test
+    public void requiredでデフォルトをtrimしないにして空白文字場合() {
+        ValidationUtil.setDefaultTrim(TrimType.NONE);
+        assertThat(ValidationUtil.required(" 　\r\n\t"), is(true));
+    }
+
+    @Test
     public void minLengthであああで2文字以上の場合() {
         assertThat(ValidationUtil.minLength("あああ", 2), is(true));
     }
@@ -178,6 +184,13 @@ public class ValidationUtilTest {
 
     public void maxLengthで半角ブランク3つでtrimせず4文字以下の場合() {
         assertThat(ValidationUtil.maxLength("   ", 4, LineBreakType.CRLF, TrimType.NONE), is(true));
+    }
+
+    public void maxLengthでデフォオルトCRLFに正規化してCRブランクLFが5文字以上5文字以下の場合() {
+        ValidationUtil.setDefaultLineBreakType(LineBreakType.CRLF);
+        ValidationUtil.setDefaultTrim(TrimType.NONE);
+        assertThat(ValidationUtil.minLength("\r \n", 5), is(true));
+        assertThat(ValidationUtil.maxLength("\r \n", 5), is(true));
     }
 
     public void isIntで123の場合() {
