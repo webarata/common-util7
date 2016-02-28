@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
  * @author arata
  *
  */
-public class ValidationUtil {
+public abstract class ValidationUtil {
     private static TrimType DEFAULT_TRIM_TYPE = TrimType.BOTH;
 
     private static LineBreakType DEFAULT_LINE_BREAK_TYPE = LineBreakType.LF;
