@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
  * 
  * @author arata
  */
-public class StringUtil {
+public abstract class StringUtil {
     /**
      * 文字列がnullか空文字列かをチェックする
      * 
