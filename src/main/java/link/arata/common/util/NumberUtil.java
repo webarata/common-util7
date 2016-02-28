@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
  * @author arata
  *
  */
-public class NumberUtil {
+public abstract class NumberUtil {
     /**
      * 文字列をIntegerに変換する。変換出来ない場合にはnullを返す。
      * 
