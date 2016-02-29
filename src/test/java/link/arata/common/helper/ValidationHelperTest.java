@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import link.arata.common.util.LineBreakType;
-import link.arata.common.util.TrimType;
+import link.arata.common.enums.LineBreakType;
+import link.arata.common.enums.TrimType;
 
 public class ValidationHelperTest {
     @Test
