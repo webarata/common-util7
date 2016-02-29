@@ -16,7 +16,7 @@ dependencies {
 }
 
 group = 'link.arata.common'
-version = '0.1.1'
+version = '0.1.2'
 
 jar {
   baseName = 'common-util7'
