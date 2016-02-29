@@ -1,4 +1,4 @@
-package link.arata.common.util;
+package link.arata.common.enums;
 
 import javax.annotation.Nonnull;
 

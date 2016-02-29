@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import link.arata.common.enums.LineBreakType;
+
 public class StringUtilTest {
     @Test
     public void isEmptyのnullの場合() {

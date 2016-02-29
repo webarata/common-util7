@@ -6,11 +6,11 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import link.arata.common.util.LineBreakType;
+import link.arata.common.enums.LineBreakType;
+import link.arata.common.enums.TrimType;
 import link.arata.common.util.NormalizedString;
 import link.arata.common.util.NumberUtil;
 import link.arata.common.util.StringUtil;
-import link.arata.common.util.TrimType;
 
 /**
  * Validation用のHelper

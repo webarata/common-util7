@@ -1,6 +1,8 @@
-package link.arata.common.util;
+package link.arata.common.enums;
 
 import javax.annotation.Nonnull;
+
+import link.arata.common.util.StringUtil;
 
 /**
  * trimの方向を決めるenum

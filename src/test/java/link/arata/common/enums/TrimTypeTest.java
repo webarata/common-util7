@@ -1,9 +1,11 @@
-package link.arata.common.util;
+package link.arata.common.enums;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import link.arata.common.enums.TrimType;
 
 public class TrimTypeTest {
     @Test

@@ -3,6 +3,8 @@ package link.arata.common.util;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import link.arata.common.enums.LineBreakType;
+
 /**
  * String関連のユーティリティクラス
  * 
