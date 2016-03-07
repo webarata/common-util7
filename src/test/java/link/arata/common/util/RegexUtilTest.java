@@ -23,4 +23,24 @@ public class RegexUtilTest {
     public void findで全角カタカナであいうえおの場合() {
         assertThat(RegexUtil.find(RegexUtil.EM_KATAKANA, "あいうえお"), is(false));
     }
+
+    @Test
+    public void findで全角カタカナで一番最初の文字の場合() {
+        assertThat(RegexUtil.find(RegexUtil.EM_KATAKANA, "\u30A0"), is(true));
+    }
+
+    @Test
+    public void findで全角カタカナで一番最初の文字の1つ前の文字場合() {
+        assertThat(RegexUtil.find(RegexUtil.EM_KATAKANA, "\u309F"), is(false));
+    }
+
+    @Test
+    public void findで全角カタカナで一番最後の文字の場合() {
+        assertThat(RegexUtil.find(RegexUtil.EM_KATAKANA, "\u30FF"), is(true));
+    }
+
+    @Test
+    public void findで全角カタカナで一番最後の文字の1つ後の文字場合() {
+        assertThat(RegexUtil.find(RegexUtil.EM_KATAKANA, "\u3100"), is(false));
+    }
 }
