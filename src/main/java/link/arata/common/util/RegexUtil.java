@@ -12,7 +12,13 @@ import java.util.regex.Pattern;
  */
 public abstract class RegexUtil {
     /** 全角カタカナのパターン */
-    public final static String EM_KATAKANA = "^[\\u30A0-\\u30FF]+$";
+    public final static String EM_KATAKANA = "\\u30A0-\\u30FF";
+
+    /** 全角ブランクのパターン */
+    public final static String EM_BLANK = "　";
+
+    /** 改行文字のパターン */
+    public final static String LINE_BREAK = "\r\n";
 
     private final static Map<String, Pattern> PATTERN_CASH = new HashMap<>();
 
@@ -46,5 +52,18 @@ public abstract class RegexUtil {
         Pattern pattern = getPattern(regex);
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
+    }
+
+    /**
+     * パターンに完全一致するかをチェックする
+     * 
+     * @param regex
+     *            パターン（自動で先頭に ^[ 、最後に *]$ がつく）
+     * @param input
+     *            検査する文字列
+     * @return パターンにinputが合致する場合true
+     */
+    public static boolean perfectMatch(String regex, CharSequence input) {
+        return find("^[" + regex + "]*$", input);
     }
 }
