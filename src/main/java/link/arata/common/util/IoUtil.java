@@ -1,50 +1,63 @@
 package link.arata.common.util;
 
-import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.nio.channels.FileChannel;
 
 /**
  * 入出力関連のユーティリティ
  * 
  * @author arata
  */
-public class IoUtil {
+public abstract class IoUtil {
     /**
-     * InputStreamからバイナリデータの読み込み
+     * ファイルのコピーをする
      * 
-     * @param is
-     *            読み込むInputStream
-     * @return 読み込んだ結果
+     * @param srcFileName
+     *            コピー元ファイル名
+     * @param destFileName
+     *            コピー先ファイル名
      * @throws IOException
-     *             発生する例外
+     *             ファイルが正しくコピーできていない場合
      */
-    @Nullable
-    public static byte[] readByteAndClose(@Nonnull InputStream is) throws IOException {
-        byte[] result = null;
-        ByteArrayOutputStream baos = null;
+    public static void copyFile(String srcFileName, String destFileName) throws IOException {
+        File srcFile = new File(srcFileName);
+        File destFile = new File(destFileName);
+        @SuppressWarnings("resource")
+        FileChannel inputChannel = new FileInputStream(srcFile).getChannel();
         try {
-            int block = 8 * 1024;
-            baos = new ByteArrayOutputStream(block);
-            byte[] buff = new byte[block];
-            while (true) {
-                int len = is.read(buff, 0, block);
-                if (len < 0) {
-                    break;
-                }
-                baos.write(buff, 0, len);
+            @SuppressWarnings("resource")
+            FileChannel outputChannel = new FileOutputStream(destFile).getChannel();
+            try {
+                outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
+            } finally {
+                closeQuietly(outputChannel);
             }
-            result = baos.toByteArray();
         } finally {
-            is.close();
-            if (baos != null) {
-                baos.close();
-            }
+            closeQuietly(inputChannel);
         }
 
-        return result;
+        if (srcFile.length() != destFile.length()) {
+            throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "'");
+        }
+    }
+
+    /**
+     * ファイルのクローズ。例外は無視する
+     * 
+     * @param closeable
+     *            クローズするファイル
+     */
+    public static void closeQuietly(Closeable closeable) {
+        try {
+            if (closeable != null) {
+                closeable.close();
+            }
+        } catch (final IOException ioe) {
+            // ignore
+        }
     }
 }
