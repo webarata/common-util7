@@ -8,8 +8,11 @@ import javax.annotation.Nullable;
 
 import link.arata.common.enums.LineBreakType;
 import link.arata.common.enums.TrimType;
+import link.arata.common.enums.UseEmBlank;
+import link.arata.common.enums.UseLineBreak;
 import link.arata.common.util.NormalizedString;
 import link.arata.common.util.NumberUtil;
+import link.arata.common.util.RegexUtil;
 import link.arata.common.util.StringUtil;
 
 /**
@@ -122,5 +125,30 @@ public class ValidationHelper {
     public boolean isInt(@Nonnull String value) {
         String trimValue = trimType.trim(value);
         return NumberUtil.formatInt(trimValue) != null;
+    }
+
+    /**
+     * 全角カタカナであるかをチェックする
+     * 
+     * @param value
+     *            検査する文字列
+     * @param useEmBlank
+     *            全角ブランクを許可するか
+     * @param useLineBreak
+     *            改行を許可するか
+     * @return パターンにマッチする場合true
+     */
+    public boolean isEmKatakana(@Nonnull String value, UseEmBlank useEmBlank, UseLineBreak useLineBreak) {
+        String trimValue = trimType.trim(value);
+
+        String pattern = RegexUtil.EM_KATAKANA;
+        if (useEmBlank == UseEmBlank.ALLOW) {
+            pattern = pattern + RegexUtil.EM_BLANK;
+        }
+        if (useLineBreak == UseLineBreak.ALLOW) {
+            pattern = pattern + RegexUtil.LINE_BREAK;
+        }
+
+        return RegexUtil.perfectMatch(pattern, trimValue);
     }
 }
