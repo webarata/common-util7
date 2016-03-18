@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import link.arata.common.enums.LineBreakType;
 import link.arata.common.enums.TrimType;
+import link.arata.common.enums.UseEmBlank;
+import link.arata.common.enums.UseLineBreak;
 
 public class ValidationHelperTest {
     @Test
@@ -238,5 +240,30 @@ public class ValidationHelperTest {
     public void isIntで1点0の場合() {
         ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
         assertThat(validationHelper.isInt("1.0"), is(false));
+    }
+
+    public void isEmKatakanaでアイウエオの場合() {
+        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
+        assertThat(validationHelper.isEmKatakana("アイウエオ", UseEmBlank.DISALLOW, UseLineBreak.DISALLOW), is(true));
+    }
+
+    public void isEmKatakanaでアイウエ全角ブランクオで全角ブランクが不許可の場合() {
+        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
+        assertThat(validationHelper.isEmKatakana("アイウエ　オ", UseEmBlank.DISALLOW, UseLineBreak.DISALLOW), is(false));
+    }
+
+    public void isEmKatakanaでアイウエ全角ブランクオで全角ブランクが許可の場合() {
+        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
+        assertThat(validationHelper.isEmKatakana("アイウエ　オ", UseEmBlank.ALLOW, UseLineBreak.DISALLOW), is(true));
+    }
+
+    public void isEmKatakanaでアイウエ全角ブランク改行オで全角ブランクと改行が許可の場合() {
+        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
+        assertThat(validationHelper.isEmKatakana("アイウエ　\rオ", UseEmBlank.ALLOW, UseLineBreak.ALLOW), is(true));
+    }
+
+    public void isEmKatakanaで半角カナの場合() {
+        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
+        assertThat(validationHelper.isEmKatakana("ｱｲｳｴｵ", UseEmBlank.DISALLOW, UseLineBreak.DISALLOW), is(false));
     }
 }
