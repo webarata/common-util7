@@ -27,19 +27,7 @@ public abstract class IoUtil {
         File srcFile = new File(srcFileName);
         File destFile = new File(destFileName);
 
-        @SuppressWarnings("resource")
-        FileChannel inputChannel = new FileInputStream(srcFile).getChannel();
-        try {
-            @SuppressWarnings("resource")
-            FileChannel outputChannel = new FileOutputStream(destFile).getChannel();
-            try {
-                outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
-            } finally {
-                closeQuietly(outputChannel);
-            }
-        } finally {
-            closeQuietly(inputChannel);
-        }
+        copyFile(new FileInputStream(srcFile), new FileOutputStream(destFileName));
 
         if (srcFile.length() != destFile.length()) {
             throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "'");
@@ -57,10 +45,8 @@ public abstract class IoUtil {
      *             ファイルが正しくコピーできない場合。
      */
     public static void copyFile(FileInputStream fis, FileOutputStream fos) throws IOException {
-        @SuppressWarnings("resource")
         FileChannel inputChannel = fis.getChannel();
         try {
-            @SuppressWarnings("resource")
             FileChannel outputChannel = fos.getChannel();
             try {
                 outputChannel.transferFrom(inputChannel, 0, inputChannel.size());
