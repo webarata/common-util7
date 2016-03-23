@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -25,8 +27,16 @@ public class IoUtilTest {
     }
 
     @Test
-    public void copyFileのテスト() throws IOException {
+    public void copyFileのファイル名の場合のテスト() throws IOException {
         IoUtil.copyFile(BASE_DIR + File.separator + "IoUtilSrc.txt", BASE_DIR + File.separator + "IoUtilDest.txt");
+        assertThat(new File(BASE_DIR + File.separator + "IoUtilDest.txt").exists(), is(true));
+        new File(BASE_DIR + File.separator + "IoUtilDest.txt").delete();
+    }
+
+    @Test
+    public void copyFileのstreamの場合テスト() throws IOException {
+        IoUtil.copyFile(new FileInputStream(new File(BASE_DIR, "IoUtilSrc.txt")),
+                new FileOutputStream(new File(BASE_DIR, "IoUtilDest.txt")));
         assertThat(new File(BASE_DIR + File.separator + "IoUtilDest.txt").exists(), is(true));
         new File(BASE_DIR + File.separator + "IoUtilDest.txt").delete();
     }
