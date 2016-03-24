@@ -14,7 +14,8 @@ import java.nio.channels.FileChannel;
  */
 public abstract class IoUtil {
     /**
-     * ファイルのコピーをする。
+     * ファイルのコピーをする。<br>
+     * コピーしたファイルのサイズのチェックも行う。
      * 
      * @param srcFileName
      *            コピー元ファイル名
