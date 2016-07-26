@@ -1,6 +1,6 @@
 package link.arata.common.enums;
 
-import javax.annotation.Nonnull;
+import java.util.Objects;
 
 import link.arata.common.util.StringUtil;
 
@@ -20,7 +20,9 @@ public enum TrimType {
      *            trim対象の文字列
      * @return trimした文字列
      */
-    public @Nonnull String trim(@Nonnull String value) {
+    public String trim(String value) {
+        Objects.requireNonNull(value);
+
         switch (this) {
         case BOTH:
             return StringUtil.trim(value);

@@ -1,7 +1,6 @@
 package link.arata.common.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.util.Objects;
 
 import link.arata.common.enums.LineBreakType;
 
@@ -18,7 +17,7 @@ public abstract class StringUtil {
      *            検査する文字列
      * @return 文字列がnullもしくは空文字列の場合true
      */
-    public static boolean isEmpty(@Nullable String value) {
+    public static boolean isEmpty(String value) {
         if (value == null) {
             return true;
         }
@@ -35,7 +34,7 @@ public abstract class StringUtil {
      *            検査する文字列
      * @return 文字列がnullもしくは空文字列でない場合true
      */
-    public static boolean isNotEmpty(@Nullable String value) {
+    public static boolean isNotEmpty(String value) {
         return !isEmpty(value);
     }
 
@@ -46,8 +45,9 @@ public abstract class StringUtil {
      *            対象の文字列
      * @return 左側をtrimした結果の文字列
      */
-    @Nonnull
-    public static String trimLeft(@Nonnull String value) {
+    public static String trimLeft(String value) {
+        Objects.requireNonNull(value);
+
         int i = 0;
         for (; i < value.length(); i++) {
             if (!Character.isWhitespace(value.charAt(i))) {
@@ -65,8 +65,9 @@ public abstract class StringUtil {
      *            対象の文字列
      * @return 右側をtrimした結果の文字列
      */
-    @Nonnull
-    public static String trimRight(@Nonnull String value) {
+    public static String trimRight(String value) {
+        Objects.requireNonNull(value);
+
         int i = value.length() - 1;
         for (; i >= 0; i--) {
             if (!Character.isWhitespace(value.charAt(i))) {
@@ -84,8 +85,9 @@ public abstract class StringUtil {
      *            対象の文字列
      * @return 右側をtrimした結果の文字列
      */
-    @Nonnull
-    public static String trim(@Nonnull String value) {
+    public static String trim(String value) {
+        Objects.requireNonNull(value);
+
         String trimValue = trimLeft(value);
         return trimRight(trimValue);
     }
@@ -99,8 +101,10 @@ public abstract class StringUtil {
      *            改行文字
      * @return
      */
-    @Nonnull
-    public static String normalizeLineBreak(@Nonnull String value, @Nonnull LineBreakType lineBreakType) {
+    public static String normalizeLineBreak(String value, LineBreakType lineBreakType) {
+        Objects.requireNonNull(value);
+        Objects.requireNonNull(lineBreakType);
+
         // LFに正規化してから、指定の改行コードに正規化する
         value = value.replace(LineBreakType.CRLF.getPhysicalString(), LineBreakType.LF.getPhysicalString());
         value = value.replace(LineBreakType.CR.getPhysicalString(), LineBreakType.LF.getPhysicalString());

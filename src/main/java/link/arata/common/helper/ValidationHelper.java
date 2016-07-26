@@ -2,9 +2,7 @@ package link.arata.common.helper;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.util.Objects;
 
 import link.arata.common.enums.LineBreakType;
 import link.arata.common.enums.TrimType;
@@ -74,7 +72,7 @@ public class ValidationHelper {
      *            検査する文字列
      * @return 空文字列かnullの場合false
      */
-    public boolean required(@Nullable String value) {
+    public boolean required(String value) {
         if (value == null) {
             return false;
         }
@@ -92,7 +90,9 @@ public class ValidationHelper {
      *            最小文字数
      * @return 最小文字数以上の場合true
      */
-    public boolean minLength(@Nonnull String value, int length) {
+    public boolean minLength(String value, int length) {
+        Objects.requireNonNull(value);
+
         String trimValue = trimType.trim(value);
         String normalizeValue = StringUtil.normalizeLineBreak(trimValue, lineBreakType);
         NormalizedString normalizedString = new NormalizedString(normalizeValue);
@@ -108,7 +108,9 @@ public class ValidationHelper {
      *            最大文字数
      * @return 最大文字数以上の場合true
      */
-    public boolean maxLength(@Nonnull String value, int length) {
+    public boolean maxLength(String value, int length) {
+        Objects.requireNonNull(value);
+
         String trimValue = trimType.trim(value);
         String normalizeString = StringUtil.normalizeLineBreak(trimValue, lineBreakType);
         NormalizedString normalizedString = new NormalizedString(normalizeString);
@@ -122,7 +124,9 @@ public class ValidationHelper {
      *            検査する文字列
      * @return 整数の場合true
      */
-    public boolean isInt(@Nonnull String value) {
+    public boolean isInt(String value) {
+        Objects.requireNonNull(value);
+
         String trimValue = trimType.trim(value);
         return NumberUtil.formatInt(trimValue) != null;
     }
@@ -138,7 +142,9 @@ public class ValidationHelper {
      *            改行を許可するか
      * @return パターンにマッチする場合true
      */
-    public boolean isEmKatakana(@Nonnull String value, UseEmBlank useEmBlank, UseLineBreak useLineBreak) {
+    public boolean isEmKatakana(String value, UseEmBlank useEmBlank, UseLineBreak useLineBreak) {
+        Objects.requireNonNull(value);
+
         String trimValue = trimType.trim(value);
 
         String pattern = RegexUtil.EM_KATAKANA;

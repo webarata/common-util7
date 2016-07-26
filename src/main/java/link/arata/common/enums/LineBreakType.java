@@ -1,6 +1,6 @@
 package link.arata.common.enums;
 
-import javax.annotation.Nonnull;
+import java.util.Objects;
 
 /**
  * 改行のタイプのEnum
@@ -18,12 +18,11 @@ public enum LineBreakType {
      * 
      * @return 改行コードの実際の文字列
      */
-    @Nonnull
     public String getPhysicalString() {
         return physicalString;
     }
 
-    private LineBreakType(@Nonnull String physicalString) {
-        this.physicalString = physicalString;
+    private LineBreakType(String physicalString) {
+        this.physicalString = Objects.requireNonNull(physicalString);
     }
 }

@@ -1,7 +1,5 @@
 package link.arata.common.util;
 
-import javax.annotation.Nullable;
-
 /**
  * 数値関連のユーティリティクラス
  * 
@@ -16,8 +14,7 @@ public abstract class NumberUtil {
      *            変換する文字列
      * @return 変換した数値
      */
-    @Nullable
-    public static Integer formatInt(@Nullable String value) {
+    public static Integer formatInt(String value) {
         if (value == null) {
             return null;
         }
