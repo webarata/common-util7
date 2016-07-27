@@ -39,8 +39,8 @@ public class ValidationHelper {
      *            正規化する改行の種類
      */
     private ValidationHelper(TrimType trimType, LineBreakType lineBreakType) {
-        this.trimType = trimType;
-        this.lineBreakType = lineBreakType;
+        this.trimType = Objects.requireNonNull(trimType);
+        this.lineBreakType = Objects.requireNonNull(lineBreakType);
     }
 
     /**
@@ -53,6 +53,9 @@ public class ValidationHelper {
      * @return
      */
     public static synchronized ValidationHelper getInstance(TrimType trimType, LineBreakType lineBreakType) {
+        Objects.requireNonNull(trimType);
+        Objects.requireNonNull(lineBreakType);
+
         Map<LineBreakType, ValidationHelper> map = instanceMap.get(trimType);
         if (map == null) {
             map = new HashMap<LineBreakType, ValidationHelper>();
