@@ -52,7 +52,7 @@ public class ValidationHelper {
      *            正規化する改行の種類
      * @return
      */
-    public static ValidationHelper getInstance(TrimType trimType, LineBreakType lineBreakType) {
+    public static synchronized ValidationHelper getInstance(TrimType trimType, LineBreakType lineBreakType) {
         Map<LineBreakType, ValidationHelper> map = instanceMap.get(trimType);
         if (map == null) {
             map = new HashMap<LineBreakType, ValidationHelper>();
