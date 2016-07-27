@@ -61,6 +61,7 @@ public class ValidationHelper {
         ValidationHelper validationHelper = map.get(lineBreakType);
         if (validationHelper == null) {
             validationHelper = new ValidationHelper(trimType, lineBreakType);
+            map.put(lineBreakType, validationHelper);
         }
         return validationHelper;
     }
