@@ -30,7 +30,7 @@ public abstract class RegexUtil {
      *            パターン
      * @return
      */
-    public static Pattern getPattern(String regex) {
+    public static synchronized Pattern getPattern(String regex) {
         Pattern pattern = PATTERN_CASH.get(regex);
         if (pattern == null) {
             pattern = Pattern.compile(regex);
