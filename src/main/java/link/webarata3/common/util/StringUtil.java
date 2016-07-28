@@ -7,7 +7,7 @@ import link.webarata3.common.enums.LineBreakType;
 /**
  * String関連のユーティリティクラス
  * 
- * @author arata
+ * @author webarata3
  */
 public abstract class StringUtil {
     /**

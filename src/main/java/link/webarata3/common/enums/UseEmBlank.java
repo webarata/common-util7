@@ -3,7 +3,7 @@ package link.webarata3.common.enums;
 /**
  * 全角ブランクを使用するか
  * 
- * @author arata
+ * @author webarata3
  *
  */
 public enum UseEmBlank {

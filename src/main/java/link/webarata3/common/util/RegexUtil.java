@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * 正規表現用のユーティリティ
  * 
- * @author arata
+ * @author webarata3
  */
 public abstract class RegexUtil {
     /** 全角カタカナのパターン */

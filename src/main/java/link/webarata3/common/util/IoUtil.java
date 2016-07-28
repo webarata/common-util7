@@ -10,7 +10,7 @@ import java.nio.channels.FileChannel;
 /**
  * 入出力関連のユーティリティ
  * 
- * @author arata
+ * @author webarata3
  */
 public abstract class IoUtil {
     /**

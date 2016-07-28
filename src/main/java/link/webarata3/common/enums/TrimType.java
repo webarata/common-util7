@@ -7,7 +7,7 @@ import link.webarata3.common.util.StringUtil;
 /**
  * trimの方向を決めるenum
  * 
- * @author arata
+ * @author webarata3
  *
  */
 public enum TrimType {

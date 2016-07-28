@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * 改行のタイプのEnum
  * 
- * @author arata
+ * @author webarata3
  *
  */
 public enum LineBreakType {

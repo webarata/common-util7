@@ -5,7 +5,7 @@ import java.text.Normalizer;
 /**
  * 正規化された文字列を扱うクラス
  * 
- * @author arata
+ * @author webarata3
  *
  */
 public class NormalizedString {

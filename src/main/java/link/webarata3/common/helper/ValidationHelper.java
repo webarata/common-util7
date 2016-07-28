@@ -16,7 +16,7 @@ import link.webarata3.common.util.StringUtil;
 /**
  * Validation用のHelper
  * 
- * @author arata
+ * @author webarata3
  *
  */
 public class ValidationHelper {

@@ -3,7 +3,7 @@ package link.webarata3.common.util;
 /**
  * 数値関連のユーティリティクラス
  * 
- * @author arata
+ * @author webarata3
  *
  */
 public abstract class NumberUtil {
