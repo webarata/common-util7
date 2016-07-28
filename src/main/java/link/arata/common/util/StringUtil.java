@@ -99,7 +99,7 @@ public abstract class StringUtil {
      *            対象の文字列
      * @param lineBreakType
      *            改行文字
-     * @return
+     * @return 改行を正規化した文字列
      */
     public static String normalizeLineBreak(String value, LineBreakType lineBreakType) {
         Objects.requireNonNull(value);

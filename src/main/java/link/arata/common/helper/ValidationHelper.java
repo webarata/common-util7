@@ -50,7 +50,7 @@ public class ValidationHelper {
      *            Validationの前に行うTrimの方向
      * @param lineBreakType
      *            正規化する改行の種類
-     * @return
+     * @return ValidationHelperのインスタンス
      */
     public static synchronized ValidationHelper getInstance(TrimType trimType, LineBreakType lineBreakType) {
         Objects.requireNonNull(trimType);

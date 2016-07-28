@@ -28,7 +28,7 @@ public abstract class RegexUtil {
      * 
      * @param regex
      *            パターン
-     * @return
+     * @return 取得したパターン
      */
     public static synchronized Pattern getPattern(String regex) {
         Pattern pattern = PATTERN_CASH.get(regex);
