@@ -1,17 +1,17 @@
-package link.arata.common.helper;
+package link.webarata3.common.helper;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import link.arata.common.enums.LineBreakType;
-import link.arata.common.enums.TrimType;
-import link.arata.common.enums.UseEmBlank;
-import link.arata.common.enums.UseLineBreak;
-import link.arata.common.util.NormalizedString;
-import link.arata.common.util.NumberUtil;
-import link.arata.common.util.RegexUtil;
-import link.arata.common.util.StringUtil;
+import link.webarata3.common.enums.LineBreakType;
+import link.webarata3.common.enums.TrimType;
+import link.webarata3.common.enums.UseEmBlank;
+import link.webarata3.common.enums.UseLineBreak;
+import link.webarata3.common.util.NormalizedString;
+import link.webarata3.common.util.NumberUtil;
+import link.webarata3.common.util.RegexUtil;
+import link.webarata3.common.util.StringUtil;
 
 /**
  * Validation用のHelper

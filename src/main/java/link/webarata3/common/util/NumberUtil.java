@@ -1,4 +1,4 @@
-package link.arata.common.util;
+package link.webarata3.common.util;
 
 /**
  * 数値関連のユーティリティクラス

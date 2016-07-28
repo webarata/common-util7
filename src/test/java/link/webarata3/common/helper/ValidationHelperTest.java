@@ -1,14 +1,15 @@
-package link.arata.common.helper;
+package link.webarata3.common.helper;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import link.arata.common.enums.LineBreakType;
-import link.arata.common.enums.TrimType;
-import link.arata.common.enums.UseEmBlank;
-import link.arata.common.enums.UseLineBreak;
+import link.webarata3.common.enums.LineBreakType;
+import link.webarata3.common.enums.TrimType;
+import link.webarata3.common.enums.UseEmBlank;
+import link.webarata3.common.enums.UseLineBreak;
+import link.webarata3.common.helper.ValidationHelper;
 
 public class ValidationHelperTest {
     @Test

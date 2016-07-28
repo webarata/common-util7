@@ -1,11 +1,12 @@
-package link.arata.common.util;
+package link.webarata3.common.util;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import link.arata.common.enums.LineBreakType;
+import link.webarata3.common.enums.LineBreakType;
+import link.webarata3.common.util.StringUtil;
 
 public class StringUtilTest {
     @Test

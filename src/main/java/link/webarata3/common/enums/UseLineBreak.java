@@ -1,4 +1,4 @@
-package link.arata.common.enums;
+package link.webarata3.common.enums;
 
 /**
  * 改行を使用するか

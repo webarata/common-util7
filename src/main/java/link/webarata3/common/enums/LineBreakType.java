@@ -1,4 +1,4 @@
-package link.arata.common.enums;
+package link.webarata3.common.enums;
 
 import java.util.Objects;
 

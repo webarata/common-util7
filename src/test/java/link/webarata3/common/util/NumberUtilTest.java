@@ -1,9 +1,11 @@
-package link.arata.common.util;
+package link.webarata3.common.util;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import link.webarata3.common.util.NumberUtil;
 
 public class NumberUtilTest {
     @Test

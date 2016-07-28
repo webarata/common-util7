@@ -1,4 +1,4 @@
-package link.arata.common.util;
+package link.webarata3.common.util;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
+
+import link.webarata3.common.util.RegexUtil;
 
 public class RegexUtilTest {
     @Test

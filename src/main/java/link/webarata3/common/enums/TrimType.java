@@ -1,8 +1,8 @@
-package link.arata.common.enums;
+package link.webarata3.common.enums;
 
 import java.util.Objects;
 
-import link.arata.common.util.StringUtil;
+import link.webarata3.common.util.StringUtil;
 
 /**
  * trimの方向を決めるenum
