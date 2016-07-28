@@ -18,26 +18,26 @@ group = 'link.arata.common'
 version = '0.1.4'
 
 jar {
-  baseName = 'common-util7'
+    baseName = 'common-util7'
 }
 
 /* Source作成用のタスク */
 task sourcesJar(type: Jar) {
-  from sourceSets.main.allSource
-  classifier = 'sources'
+    from sourceSets.main.allSource
+    classifier = 'sources'
 }
 
 artifacts {
-  archives jar
-  archives sourcesJar
+    archives jar
+    archives sourcesJar
 }
 
 uploadArchives {
-  repositories {
-    mavenDeployer {
-      repository(url: uri(getProperty('mavenRepository')))
+    repositories {
+        mavenDeployer {
+           repository(url: uri(getProperty('mavenRepository')))
+        }
     }
-  }
 }
 
 apply plugin: 'jacoco'
