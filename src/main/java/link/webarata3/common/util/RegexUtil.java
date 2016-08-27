@@ -12,15 +12,15 @@ import java.util.regex.Pattern;
  */
 public abstract class RegexUtil {
     /** 全角カタカナのパターン */
-    public final static String EM_KATAKANA = "\\u30A0-\\u30FF";
+    public static final String EM_KATAKANA = "\\u30A0-\\u30FF";
 
     /** 全角ブランクのパターン */
-    public final static String EM_BLANK = "　";
+    public static final String EM_BLANK = "　";
 
     /** 改行文字のパターン */
-    public final static String LINE_BREAK = "\r\n";
+    public static final String LINE_BREAK = "\r\n";
 
-    private final static Map<String, Pattern> PATTERN_CASH = new HashMap<>();
+    private static final Map<String, Pattern> PATTERN_CASH = new HashMap<>();
 
     /**
      * コンパイルされたPatternオブジェクトを取得する。<br>
