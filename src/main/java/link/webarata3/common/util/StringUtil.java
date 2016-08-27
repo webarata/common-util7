@@ -1,7 +1,5 @@
 package link.webarata3.common.util;
 
-import java.util.Objects;
-
 import link.webarata3.common.enums.LineBreakType;
 
 /**
@@ -46,8 +44,6 @@ public abstract class StringUtil {
      * @return 左側をtrimした結果の文字列
      */
     public static String trimLeft(String value) {
-        Objects.requireNonNull(value);
-
         int i = 0;
         for (; i < value.length(); i++) {
             if (!Character.isWhitespace(value.charAt(i))) {
@@ -66,8 +62,6 @@ public abstract class StringUtil {
      * @return 右側をtrimした結果の文字列
      */
     public static String trimRight(String value) {
-        Objects.requireNonNull(value);
-
         int i = value.length() - 1;
         for (; i >= 0; i--) {
             if (!Character.isWhitespace(value.charAt(i))) {
@@ -86,8 +80,6 @@ public abstract class StringUtil {
      * @return 右側をtrimした結果の文字列
      */
     public static String trim(String value) {
-        Objects.requireNonNull(value);
-
         String trimValue = trimLeft(value);
         return trimRight(trimValue);
     }
@@ -102,9 +94,6 @@ public abstract class StringUtil {
      * @return 改行を正規化した文字列
      */
     public static String normalizeLineBreak(String value, LineBreakType lineBreakType) {
-        Objects.requireNonNull(value);
-        Objects.requireNonNull(lineBreakType);
-
         // LFに正規化してから、指定の改行コードに正規化する
         value = value.replace(LineBreakType.CRLF.getPhysicalString(), LineBreakType.LF.getPhysicalString());
         value = value.replace(LineBreakType.CR.getPhysicalString(), LineBreakType.LF.getPhysicalString());

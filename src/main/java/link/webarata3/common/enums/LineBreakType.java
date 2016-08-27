@@ -1,7 +1,5 @@
 package link.webarata3.common.enums;
 
-import java.util.Objects;
-
 /**
  * 改行のタイプのEnum
  * 
@@ -23,6 +21,6 @@ public enum LineBreakType {
     }
 
     private LineBreakType(String physicalString) {
-        this.physicalString = Objects.requireNonNull(physicalString);
+        this.physicalString = physicalString;
     }
 }
