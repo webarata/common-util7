@@ -2,7 +2,6 @@ package link.webarata3.common.helper;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import link.webarata3.common.enums.LineBreakType;
 import link.webarata3.common.enums.TrimType;
@@ -39,8 +38,8 @@ public class ValidationHelper {
      *            正規化する改行の種類
      */
     private ValidationHelper(TrimType trimType, LineBreakType lineBreakType) {
-        this.trimType = Objects.requireNonNull(trimType);
-        this.lineBreakType = Objects.requireNonNull(lineBreakType);
+        this.trimType = trimType;
+        this.lineBreakType = lineBreakType;
     }
 
     /**
@@ -53,9 +52,6 @@ public class ValidationHelper {
      * @return ValidationHelperのインスタンス
      */
     public static synchronized ValidationHelper getInstance(TrimType trimType, LineBreakType lineBreakType) {
-        Objects.requireNonNull(trimType);
-        Objects.requireNonNull(lineBreakType);
-
         Map<LineBreakType, ValidationHelper> map = instanceMap.get(trimType);
         if (map == null) {
             map = new HashMap<LineBreakType, ValidationHelper>();
@@ -95,8 +91,6 @@ public class ValidationHelper {
      * @return 最小文字数以上の場合true
      */
     public boolean minLength(String value, int length) {
-        Objects.requireNonNull(value);
-
         String trimValue = trimType.trim(value);
         String normalizeValue = StringUtil.normalizeLineBreak(trimValue, lineBreakType);
         NormalizedString normalizedString = new NormalizedString(normalizeValue);
@@ -113,8 +107,6 @@ public class ValidationHelper {
      * @return 最大文字数以上の場合true
      */
     public boolean maxLength(String value, int length) {
-        Objects.requireNonNull(value);
-
         String trimValue = trimType.trim(value);
         String normalizeString = StringUtil.normalizeLineBreak(trimValue, lineBreakType);
         NormalizedString normalizedString = new NormalizedString(normalizeString);
@@ -129,8 +121,6 @@ public class ValidationHelper {
      * @return 整数の場合true
      */
     public boolean isInt(String value) {
-        Objects.requireNonNull(value);
-
         String trimValue = trimType.trim(value);
         return NumberUtil.formatInt(trimValue) != null;
     }
@@ -147,8 +137,6 @@ public class ValidationHelper {
      * @return パターンにマッチする場合true
      */
     public boolean isEmKatakana(String value, UseEmBlank useEmBlank, UseLineBreak useLineBreak) {
-        Objects.requireNonNull(value);
-
         String trimValue = trimType.trim(value);
 
         String pattern = RegexUtil.EM_KATAKANA;

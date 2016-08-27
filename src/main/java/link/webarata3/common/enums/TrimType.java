@@ -1,7 +1,5 @@
 package link.webarata3.common.enums;
 
-import java.util.Objects;
-
 import link.webarata3.common.util.StringUtil;
 
 /**
@@ -21,8 +19,6 @@ public enum TrimType {
      * @return trimした文字列
      */
     public String trim(String value) {
-        Objects.requireNonNull(value);
-
         switch (this) {
         case BOTH:
             return StringUtil.trim(value);
