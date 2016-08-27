@@ -32,6 +32,17 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+// http://vcs.hatenablog.com/entry/java/cross-compile-bootclasspath
+tasks.withType(JavaCompile) {
+    doFirst {
+        if (sourceCompatibility == '1.7' && System.env.JDK7_HOME != null) {
+            options.fork = true
+            options.bootClasspath = "$System.env.JDK7_HOME/jre/lib/rt.jar"
+            options.bootClasspath += "$File.pathSeparator$System.env.JDK7_HOME/jre/lib/jsse.jar"
+        }
+    }
+}
+
 artifacts {
     archives jar
     archives sourcesJar
