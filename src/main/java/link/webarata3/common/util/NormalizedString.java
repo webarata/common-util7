@@ -9,8 +9,8 @@ import java.text.Normalizer;
  *
  */
 public class NormalizedString {
-    private String originalString;
-    private String normalizedString;
+    private final String originalString;
+    private final String normalizedString;
 
     /**
      * コンストラクタ
