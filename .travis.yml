@@ -6,4 +6,4 @@ script:
     - ./gradlew test
 
 after_success:
-    - ./gradlew jacocoTestReport coveralls
+    - ./gradlew findbugsMain jacocoTestReport coveralls

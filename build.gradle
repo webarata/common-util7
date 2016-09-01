@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
+apply plugin: 'findbugs'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -57,8 +58,26 @@ uploadArchives {
     }
 }
 
-apply plugin: 'jacoco'
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
 
+task findbugsConvertSjis << {
+    def filename="${project.rootDir}/build/reports/findbugs/main.html"
+    def file = new File(filename)
+    def text = file.getText()
+    text = text.replaceAll(/<head>/, "<head>\n<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>")
+
+    def fw=new File(filename).newWriter()
+    fw.writeLine(text)
+    fw.close()
+}
+
+apply plugin: 'jacoco'
+ 
 jacocoTestReport {
     reports {
         html.enabled = true
