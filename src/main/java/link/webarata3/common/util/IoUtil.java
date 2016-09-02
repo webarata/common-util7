@@ -3,6 +3,7 @@ package link.webarata3.common.util;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -21,14 +22,27 @@ public abstract class IoUtil {
      *            コピー元ファイル名
      * @param destFileName
      *            コピー先ファイル名
+     * @throws FileNotFoundException
+     *             コピーするファイルが存在しない場合
      * @throws IOException
      *             ファイルが正しくコピーできていない場合
      */
-    public static void copyFile(String srcFileName, String destFileName) throws IOException {
+    public static void copyFile(String srcFileName, String destFileName) throws FileNotFoundException, IOException {
         File srcFile = new File(srcFileName);
         File destFile = new File(destFileName);
 
-        copyFile(new FileInputStream(srcFile), new FileOutputStream(destFileName));
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+
+        try {
+            fis = new FileInputStream(srcFile);
+            fos = new FileOutputStream(destFileName);
+        } catch (FileNotFoundException e) {
+            closeQuietly(fis);
+            closeQuietly(fos);
+            throw e;
+        }
+        copyFile(fis, fos);
 
         if (srcFile.length() != destFile.length()) {
             throw new IOException("Failed to copy full contents from '" + srcFile + "' to '" + destFile + "'");
