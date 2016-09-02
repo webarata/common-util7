@@ -3,7 +3,7 @@ sudo: false
 jdk:
     - oraclejdk7
 script:
-    - ./gradlew test check
+    - ./gradlew test findbugsMain
 
 after_success:
     - ./gradlew jacocoTestReport coveralls
