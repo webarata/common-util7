@@ -19,7 +19,7 @@ public abstract class NumberUtil {
             return null;
         }
         try {
-            return new Integer(Integer.parseInt(value));
+            return Integer.valueOf(Integer.parseInt(value));
         } catch (NumberFormatException e) {
             return null;
         }

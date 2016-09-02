@@ -65,7 +65,7 @@ tasks.withType(FindBugs) {
     }
 }
 
-task findbugsConvertSjis << {
+task findbugsConvertUtf8 << {
     def filename="${project.rootDir}/build/reports/findbugs/main.html"
     def file = new File(filename)
     def text = file.getText()
