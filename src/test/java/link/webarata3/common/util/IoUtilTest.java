@@ -12,7 +12,10 @@ import java.net.URISyntaxException;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
 
+@RunWith(Enclosed.class)
 public class IoUtilTest {
 
     private static String BASE_DIR;
@@ -23,23 +26,25 @@ public class IoUtilTest {
         BASE_DIR = file.getParent();
     }
 
-    @After
-    public void tearDown() {
-        new File(BASE_DIR + File.separator + "IoUtilDest.txt").delete();
-    }
+    public static class ファイルコピー {
+        @After
+        public void tearDown() {
+            new File(BASE_DIR + File.separator + "IoUtilDest.txt").delete();
+        }
 
-    @Test
-    public void copyFileのファイル名の場合のテスト() throws IOException {
-        IoUtil.copyFile(BASE_DIR + File.separator + "IoUtilSrc.txt", BASE_DIR + File.separator + "IoUtilDest.txt");
+        @Test
+        public void copyFileのファイル名の場合のテスト() throws IOException {
+            IoUtil.copyFile(BASE_DIR + File.separator + "IoUtilSrc.txt", BASE_DIR + File.separator + "IoUtilDest.txt");
 
-        assertThat(new File(BASE_DIR + File.separator + "IoUtilDest.txt").exists(), is(true));
-    }
+            assertThat(new File(BASE_DIR + File.separator + "IoUtilDest.txt").exists(), is(true));
+        }
 
-    @Test
-    public void copyFileのstreamの場合テスト() throws IOException {
-        IoUtil.copyFile(new FileInputStream(new File(BASE_DIR, "IoUtilSrc.txt")),
-                new FileOutputStream(new File(BASE_DIR, "IoUtilDest.txt")));
+        @Test
+        public void copyFileのstreamの場合テスト() throws IOException {
+            IoUtil.copyFile(new FileInputStream(new File(BASE_DIR, "IoUtilSrc.txt")),
+                    new FileOutputStream(new File(BASE_DIR, "IoUtilDest.txt")));
 
-        assertThat(new File(BASE_DIR + File.separator + "IoUtilDest.txt").exists(), is(true));
+            assertThat(new File(BASE_DIR + File.separator + "IoUtilDest.txt").exists(), is(true));
+        }
     }
 }
