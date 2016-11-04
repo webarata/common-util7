@@ -16,12 +16,8 @@ public abstract class StringUtil {
      * @return 文字列がnullもしくは空文字列の場合true
      */
     public static boolean isEmpty(String value) {
-        if (value == null) {
-            return true;
-        }
-        if (value.length() == 0) {
-            return true;
-        }
+        if (value == null) return true;
+        if (value.length() == 0) return true;
         return false;
     }
 
@@ -44,6 +40,8 @@ public abstract class StringUtil {
      * @return 左側をtrimした結果の文字列
      */
     public static String trimLeft(String value) {
+        if (StringUtil.isEmpty(value)) return value;
+
         int i = 0;
         for (; i < value.length(); i++) {
             if (!Character.isWhitespace(value.charAt(i))) {
@@ -62,6 +60,8 @@ public abstract class StringUtil {
      * @return 右側をtrimした結果の文字列
      */
     public static String trimRight(String value) {
+        if (StringUtil.isEmpty(value)) return value;
+
         int i = value.length() - 1;
         for (; i >= 0; i--) {
             if (!Character.isWhitespace(value.charAt(i))) {

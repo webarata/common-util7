@@ -61,7 +61,8 @@ public class StringUtilTest {
     @RunWith(Theories.class)
     public static class trimLeftのテスト {
         @DataPoints
-        public static Fixture[] PARAMs = { new Fixture(" あいうえお", "あいうえお"), // 半角ブランクのテスト
+        public static Fixture[] PARAMs = { new Fixture(null, null), // nullのテスト
+                new Fixture(" あいうえお", "あいうえお"), // 半角ブランクのテスト
                 new Fixture("　あいうえお", "あいうえお"), // 全角ブランクのテスト
                 new Fixture("\tあいうえお", "あいうえお"), // タブのテスト
                 new Fixture("\nあいうえお", "あいうえお"), // LFのテスト
@@ -91,7 +92,8 @@ public class StringUtilTest {
     @RunWith(Theories.class)
     public static class trimRightのテスト {
         @DataPoints
-        public static Fixture[] PARAMs = { new Fixture("あいうえお ", "あいうえお"), // 半角ブランクのテスト
+        public static Fixture[] PARAMs = { new Fixture(null, null), // nullのテスト
+                new Fixture("あいうえお ", "あいうえお"), // 半角ブランクのテスト
                 new Fixture("あいうえお　", "あいうえお"), // 全角ブランクのテスト
                 new Fixture("あいうえお\t", "あいうえお"), // タブのテスト
                 new Fixture("あいうえお\n", "あいうえお"), // LFのテスト
@@ -121,7 +123,8 @@ public class StringUtilTest {
     @RunWith(Theories.class)
     public static class trimのテスト {
         @DataPoints
-        public static Fixture[] PARAMs = { new Fixture(" あいうえお ", "あいうえお"), // 半角ブランクのテスト
+        public static Fixture[] PARAMs = { new Fixture(null, null), // nullのテスト
+                new Fixture(" あいうえお ", "あいうえお"), // 半角ブランクのテスト
                 new Fixture("　あいうえお　", "あいうえお"), // 全角ブランクのテスト
                 new Fixture("\tあいうえお\t", "あいうえお"), // タブのテスト
                 new Fixture("\nあいうえお\n", "あいうえお"), // LFのテスト
