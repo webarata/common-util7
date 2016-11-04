@@ -5,26 +5,24 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import link.webarata3.common.util.NumberUtil;
-
 public class NumberUtilTest {
     @Test
-    public void formatIntで123の場合() {
+    public void formatIntで123の場合() throws Exception {
         assertThat(NumberUtil.formatInt("123"), is(123));
     }
 
     @Test
-    public void formatIntでマイナス123の場合() {
+    public void formatIntでマイナス123の場合() throws Exception {
         assertThat(NumberUtil.formatInt("-123"), is(-123));
     }
 
     @Test
-    public void formatIntでnullの場合() {
+    public void formatIntでnullの場合() throws Exception {
         assertThat(NumberUtil.formatInt(null), is(nullValue()));
     }
 
     @Test
-    public void formatIntで1点0の場合() {
+    public void formatIntで1点0の場合() throws Exception {
         assertThat(NumberUtil.formatInt("1.0"), is(nullValue()));
     }
 }

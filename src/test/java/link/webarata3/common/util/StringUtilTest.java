@@ -3,197 +3,172 @@ package link.webarata3.common.util;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
+import org.junit.runner.RunWith;
 
 import link.webarata3.common.enums.LineBreakType;
-import link.webarata3.common.util.StringUtil;
 
+@RunWith(Enclosed.class)
 public class StringUtilTest {
-    @Test
-    public void isEmptyのnullの場合() {
-        assertThat(StringUtil.isEmpty(null), is(true));
+
+    @RunWith(Theories.class)
+    public static class isEmptyのテスト {
+        @DataPoints
+        public static Fixture[] PARAMs = { new Fixture(null, true), new Fixture("", true), new Fixture("ABC", false),
+                new Fixture("あ", false) };
+
+        @Theory
+        public void isEmpty(Fixture fixture) throws Exception {
+            assertThat(StringUtil.isEmpty(fixture.str), is(fixture.expected));
+        }
+
+        static class Fixture {
+            String str;
+            boolean expected;
+
+            Fixture(String str, boolean expected) {
+                this.str = str;
+                this.expected = expected;
+            }
+        }
     }
 
-    @Test
-    public void isEmptyの空文字の場合() {
-        assertThat(StringUtil.isEmpty(""), is(true));
+    @RunWith(Theories.class)
+    public static class isNotEmptyのテスト {
+        @DataPoints
+        public static Fixture[] PARAMs = { new Fixture(null, false), new Fixture("", false), new Fixture("ABC", true),
+                new Fixture("あ", true) };
+
+        @Theory
+        public void isNotEmpty(Fixture fixture) throws Exception {
+            assertThat(StringUtil.isNotEmpty(fixture.str), is(fixture.expected));
+        }
+
+        static class Fixture {
+            String str;
+            boolean expected;
+
+            Fixture(String str, boolean expected) {
+                this.str = str;
+                this.expected = expected;
+            }
+        }
     }
 
-    @Test
-    public void isEmptyのABCの場合() {
-        assertThat(StringUtil.isEmpty("ABC"), is(false));
+    @RunWith(Theories.class)
+    public static class trimLeftのテスト {
+        @DataPoints
+        public static Fixture[] PARAMs = { new Fixture(" あいうえお", "あいうえお"), // 半角ブランクのテスト
+                new Fixture("　あいうえお", "あいうえお"), // 全角ブランクのテスト
+                new Fixture("\tあいうえお", "あいうえお"), // タブのテスト
+                new Fixture("\nあいうえお", "あいうえお"), // LFのテスト
+                new Fixture("\rあいうえお", "あいうえお"), // CRのテスト
+                new Fixture(" 　\t\r\nあいうえお", "あいうえお"), // 混ざった場合のテスト
+                new Fixture("あいうえお 　\t\r\n", "あいうえお 　\t\r\n"), // 右Trimが行われないこと
+                new Fixture(" 　\t\r\n", ""), // すべての文字が太陽の場合
+                new Fixture("", "") // 空文字の場合
+        };
+
+        @Theory
+        public void trimLeft(Fixture fixture) throws Exception {
+            assertThat(StringUtil.trimLeft(fixture.str), is(fixture.expected));
+        }
+
+        public static class Fixture {
+            String str;
+            String expected;
+
+            Fixture(String str, String expected) {
+                this.str = str;
+                this.expected = expected;
+            }
+        }
     }
 
-    @Test
-    public void isEmptyのあの場合() {
-        assertThat(StringUtil.isEmpty("あ"), is(false));
+    @RunWith(Theories.class)
+    public static class trimRightのテスト {
+        @DataPoints
+        public static Fixture[] PARAMs = { new Fixture("あいうえお ", "あいうえお"), // 半角ブランクのテスト
+                new Fixture("あいうえお　", "あいうえお"), // 全角ブランクのテスト
+                new Fixture("あいうえお\t", "あいうえお"), // タブのテスト
+                new Fixture("あいうえお\n", "あいうえお"), // LFのテスト
+                new Fixture("あいうえお\r", "あいうえお"), // CRのテスト
+                new Fixture("あいうえお 　\t\r\n", "あいうえお"), // 混ざった場合のテスト
+                new Fixture(" 　\t\r\nあいうえお", " 　\t\r\nあいうえお"), // 右Trimが行われないこと
+                new Fixture(" 　\t\r\n", ""), // すべての文字が太陽の場合
+                new Fixture("", "") // 空文字の場合
+        };
+
+        @Theory
+        public void trimRight(Fixture fixture) throws Exception {
+            assertThat(StringUtil.trimRight(fixture.str), is(fixture.expected));
+        }
+
+        public static class Fixture {
+            String str;
+            String expected;
+
+            Fixture(String str, String expected) {
+                this.str = str;
+                this.expected = expected;
+            }
+        }
     }
 
-    @Test
-    public void isNotEmptyのnullの場合() {
-        assertThat(StringUtil.isNotEmpty(null), is(false));
+    @RunWith(Theories.class)
+    public static class trimのテスト {
+        @DataPoints
+        public static Fixture[] PARAMs = { new Fixture(" あいうえお ", "あいうえお"), // 半角ブランクのテスト
+                new Fixture("　あいうえお　", "あいうえお"), // 全角ブランクのテスト
+                new Fixture("\tあいうえお\t", "あいうえお"), // タブのテスト
+                new Fixture("\nあいうえお\n", "あいうえお"), // LFのテスト
+                new Fixture("\rあいうえお\r", "あいうえお"), // CRのテスト
+                new Fixture(" 　\t\r\nあいうえお 　\t\r\n", "あいうえお"), // 混ざった場合のテスト
+                new Fixture(" 　\t\r\n", ""), // すべての文字が太陽の場合
+                new Fixture("", "") // 空文字の場合
+        };
+
+        @Theory
+        public void trim(Fixture fixture) throws Exception {
+            assertThat(StringUtil.trim(fixture.str), is(fixture.expected));
+        }
+
+        public static class Fixture {
+            String str;
+            String expected;
+
+            Fixture(String str, String expected) {
+                this.str = str;
+                this.expected = expected;
+            }
+        }
     }
 
-    @Test
-    public void isNotEmptyの空文字の場合() {
-        assertThat(StringUtil.isNotEmpty(""), is(false));
-    }
+    @RunWith(Theories.class)
+    public static class normalizeLineBreakのテスト {
+        @DataPoints
+        public static Fixture[] PARAMs = { new Fixture("test\r\ntest\ntest\r", LineBreakType.CR, "test\rtest\rtest\r"),
+                new Fixture("test\r\ntest\ntest\r", LineBreakType.LF, "test\ntest\ntest\n"),
+                new Fixture("test\r\ntest\ntest\r", LineBreakType.CRLF, "test\r\ntest\r\ntest\r\n") };
 
-    @Test
-    public void isNotEmptyのABCの場合() {
-        assertThat(StringUtil.isNotEmpty("ABC"), is(true));
-    }
+        @Theory
+        public void normalizeLineBreak(Fixture fixture) throws Exception {
+            assertThat(StringUtil.normalizeLineBreak(fixture.str, fixture.lineBreakType), is(fixture.expected));
+        }
 
-    @Test
-    public void isNotEmptyのあの場合() {
-        assertThat(StringUtil.isNotEmpty("あ"), is(true));
-    }
+        public static class Fixture {
+            String str;
+            LineBreakType lineBreakType;
+            String expected;
 
-    @Test
-    public void trimLeftの半角ブランクがtrimされること() {
-        assertThat(StringUtil.trimLeft(" あいうえお"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimLeft全角ブランクがtrimされること() {
-        assertThat(StringUtil.trimLeft("　あいうえお"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimLeftのタブがtrimされること() {
-        assertThat(StringUtil.trimLeft("\tあいうえお"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimLeftのLFがtrimされること() {
-        assertThat(StringUtil.trimLeft("\nあいうえお"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimLeftのCRがtrimされること() {
-        assertThat(StringUtil.trimLeft("\rあいうえお"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimLeftのいろいろ混ざった場合にtrimされること() {
-        assertThat(StringUtil.trimLeft(" 　\t\nあいうえお"), is("あいうえお"));
-    }
-
-    public void trimLeftの右側がtrimされないこと() {
-        assertThat(StringUtil.trimLeft("あいうえお\n\t　 "), is("あいうえお\n\t　 "));
-    }
-
-    public void trimLeftですべての文字がtrim対象の場合() {
-        assertThat(StringUtil.trimLeft(" 　\t\n"), is(""));
-    }
-
-    public void trimLeftで空文字の場合() {
-        assertThat(StringUtil.trimLeft(""), is(""));
-    }
-
-    @Test
-    public void trimRightの半角ブランクがtrimされること() {
-        assertThat(StringUtil.trimRight("あいうえお "), is("あいうえお"));
-    }
-
-    @Test
-    public void trimRight全角ブランクがtrimされること() {
-        assertThat(StringUtil.trimRight("あいうえお　"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimRightのタブがtrimされること() {
-        assertThat(StringUtil.trimRight("あいうえお\t"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimRightのLFがtrimされること() {
-        assertThat(StringUtil.trimRight("あいうえお\n"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimRightのCRがtrimされること() {
-        assertThat(StringUtil.trimRight("あいうえお\r"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimRightのいろいろ混ざった場合にtrimされること() {
-        assertThat(StringUtil.trimRight("あいうえお 　\t\n"), is("あいうえお"));
-    }
-
-    public void trimRightの左側がtrimされないこと() {
-        assertThat(StringUtil.trimRight("\n\t　 あいうえお"), is("あいうえお\n\t　 "));
-    }
-
-    public void trimRightですべての文字がtrim対象の場合() {
-        assertThat(StringUtil.trimRight(" 　\t\n"), is(""));
-    }
-
-    public void trimRightで空文字の場合() {
-        assertThat(StringUtil.trimRight(""), is(""));
-    }
-
-    @Test
-    public void trimの半角ブランクがtrimされること() {
-        assertThat(StringUtil.trim(" あいうえお "), is("あいうえお"));
-    }
-
-    @Test
-    public void trim全角ブランクがtrimされること() {
-        assertThat(StringUtil.trim("　あいうえお　"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimのタブがtrimされること() {
-        assertThat(StringUtil.trim("\tあいうえお\t"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimのLFがtrimされること() {
-        assertThat(StringUtil.trim("\nあいうえお\n"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimのCRがtrimされること() {
-        assertThat(StringUtil.trim("\rあいうえお\r"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimのいろいろ混ざった場合にtrimされること() {
-        assertThat(StringUtil.trim(" 　\t\nあいうえお 　\t\n"), is("あいうえお"));
-    }
-
-    @Test
-    public void trimですべての文字が対象の場合() {
-        assertThat(StringUtil.trimRight(" 　\t\n"), is(""));
-    }
-
-    @Test
-    public void trimで空文字の場合() {
-        assertThat(StringUtil.trim(""), is(""));
-    }
-
-    @Test
-    public void normalizeLineBreakでCRに変換する場合() {
-        String target = "test\r\ntest\ntest\r";
-        String expected = "test\rtest\rtest\r";
-
-        assertThat(StringUtil.normalizeLineBreak(target, LineBreakType.CR), is(expected));
-    }
-
-    @Test
-    public void normalizeLineBreakでLFに変換する場合() {
-        String target = "test\r\ntest\ntest\r";
-        String expected = "test\ntest\ntest\n";
-
-        assertThat(StringUtil.normalizeLineBreak(target, LineBreakType.LF), is(expected));
-    }
-
-    @Test
-    public void normalizeLineBreakでCRLFに変換する場合() {
-        String target = "test\r\ntest\ntest\r";
-        String expected = "test\r\ntest\r\ntest\r\n";
-
-        assertThat(StringUtil.normalizeLineBreak(target, LineBreakType.CRLF), is(expected));
+            Fixture(String str, LineBreakType lineBreakType, String expected) {
+                this.str = str;
+                this.lineBreakType = lineBreakType;
+                this.expected = expected;
+            }
+        }
     }
 }

@@ -31,7 +31,7 @@ public class RegexUtilTest {
         };
 
         @Theory
-        public void test(Fixture fixture) {
+        public void perfectMatch(Fixture fixture) throws Exception {
             assertThat(RegexUtil.perfectMatch(RegexUtil.EM_KATAKANA, fixture.str), is(fixture.expected));
         }
 
