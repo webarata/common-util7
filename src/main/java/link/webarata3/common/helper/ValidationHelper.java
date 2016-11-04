@@ -89,8 +89,15 @@ public class ValidationHelper {
      * @param length
      *            最小文字数
      * @return 最小文字数以上の場合true
+     * @throws IllegalArgumentException
+     *             lengthに負数の指定
      */
-    public boolean minLength(String value, int length) {
+    public boolean minLength(String value, int length) throws IllegalArgumentException {
+        if (length < 0) throw new IllegalArgumentException();
+
+        // nullは空文字としてチェックする
+        if (value == null) return 0 >= length;
+
         String trimValue = trimType.trim(value);
         String normalizeValue = StringUtil.normalizeLineBreak(trimValue, lineBreakType);
         NormalizedString normalizedString = new NormalizedString(normalizeValue);
@@ -104,9 +111,14 @@ public class ValidationHelper {
      *            検査する文字列
      * @param length
      *            最大文字数
-     * @return 最大文字数以上の場合true
+     * @return 最大文字数以下の場合true
+     * @throws IllegalArgumentException
+     *             lengthに負数の指定
      */
-    public boolean maxLength(String value, int length) {
+    public boolean maxLength(String value, int length) throws IllegalArgumentException {
+        if (length < 0) throw new IllegalArgumentException();
+        if (value == null) return true;
+
         String trimValue = trimType.trim(value);
         String normalizeString = StringUtil.normalizeLineBreak(trimValue, lineBreakType);
         NormalizedString normalizedString = new NormalizedString(normalizeString);
@@ -137,6 +149,8 @@ public class ValidationHelper {
      * @return パターンにマッチする場合true
      */
     public boolean isEmKatakana(String value, UseEmBlank useEmBlank, UseLineBreak useLineBreak) {
+        if (StringUtil.isEmpty(value)) return true;
+
         String trimValue = trimType.trim(value);
 
         String pattern = RegexUtil.EM_KATAKANA;

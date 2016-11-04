@@ -4,7 +4,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
@@ -50,8 +49,8 @@ public class ValidationHelperTest {
     @RunWith(Theories.class)
     public static class requiredでtrimなしで改行がLFの場合のテスト {
         @DataPoints
-        public static Fixture[] PARAMs = { new Fixture(" 　\r\n\t", true), new Fixture("", false),
-                new Fixture("あいうえお", true), new Fixture("あいうえお ", true) };
+        public static Fixture[] PARAMs = { new Fixture(null, false), new Fixture(" 　\r\n\t", true),
+                new Fixture("", false), new Fixture("あいうえお", true), new Fixture("あいうえお ", true) };
 
         private ValidationHelper validationHelper;
 
@@ -79,11 +78,11 @@ public class ValidationHelperTest {
     @RunWith(Theories.class)
     public static class minLengthで両端trimで改行がLFの場合のテスト {
         @DataPoints
-        public static Fixture[] PARAMs = { new Fixture("あああ", 2, true), new Fixture("あああ", 3, true),
-                new Fixture("あああ", 4, false), new Fixture(" あああ ", 2, true), new Fixture(" あああ ", 3, true),
-                new Fixture(" あああ ", 4, false), new Fixture("あ\r\nあ", 2, true), new Fixture("あ\r\nあ", 3, true),
-                new Fixture("あ\r\nあ", 4, false), new Fixture("𠮷野家", 2, true), new Fixture("𠮷野家", 3, true),
-                new Fixture("𠮷野家", 4, false) };
+        public static Fixture[] PARAMs = { new Fixture(null, 0, true), new Fixture(null, 1, false),
+                new Fixture("あああ", 2, true), new Fixture("あああ", 3, true), new Fixture("あああ", 4, false),
+                new Fixture(" あああ ", 2, true), new Fixture(" あああ ", 3, true), new Fixture(" あああ ", 4, false),
+                new Fixture("あ\r\nあ", 2, true), new Fixture("あ\r\nあ", 3, true), new Fixture("あ\r\nあ", 4, false),
+                new Fixture("𠮷野家", 2, true), new Fixture("𠮷野家", 3, true), new Fixture("𠮷野家", 4, false) };
 
         private ValidationHelper validationHelper;
 
@@ -113,9 +112,9 @@ public class ValidationHelperTest {
     @RunWith(Theories.class)
     public static class minLengthでtrimなしで改行がCRLFの場合のテスト {
         @DataPoints
-        public static Fixture[] PARAMs = { new Fixture("   ", 2, true), new Fixture("   ", 3, true),
-                new Fixture("   ", 4, false), new Fixture(" a ", 2, true), new Fixture(" a ", 3, true),
-                new Fixture(" a ", 4, false) };
+        public static Fixture[] PARAMs = { new Fixture(null, 1, false), new Fixture("   ", 2, true),
+                new Fixture("   ", 3, true), new Fixture("   ", 4, false), new Fixture(" a ", 2, true),
+                new Fixture(" a ", 3, true), new Fixture(" a ", 4, false) };
 
         private ValidationHelper validationHelper;
 
@@ -145,11 +144,11 @@ public class ValidationHelperTest {
     @RunWith(Theories.class)
     public static class maxLengthで両端trimで改行がLFの場合のテスト {
         @DataPoints
-        public static Fixture[] PARAMs = { new Fixture("あああ", 2, false), new Fixture("あああ", 3, true),
-                new Fixture("あああ", 4, true), new Fixture(" あああ ", 2, false), new Fixture(" あああ ", 3, true),
-                new Fixture(" あああ ", 4, true), new Fixture("あ\r\nあ", 2, false), new Fixture("あ\r\nあ", 3, true),
-                new Fixture("あ\r\nあ", 4, true), new Fixture("𠮷野家", 2, false), new Fixture("𠮷野家", 3, true),
-                new Fixture("𠮷野家", 4, true) };
+        public static Fixture[] PARAMs = { new Fixture(null, 1, true), new Fixture("あああ", 2, false),
+                new Fixture("あああ", 3, true), new Fixture("あああ", 4, true), new Fixture(" あああ ", 2, false),
+                new Fixture(" あああ ", 3, true), new Fixture(" あああ ", 4, true), new Fixture("あ\r\nあ", 2, false),
+                new Fixture("あ\r\nあ", 3, true), new Fixture("あ\r\nあ", 4, true), new Fixture("𠮷野家", 2, false),
+                new Fixture("𠮷野家", 3, true), new Fixture("𠮷野家", 4, true) };
 
         private ValidationHelper validationHelper;
 
@@ -179,9 +178,9 @@ public class ValidationHelperTest {
     @RunWith(Theories.class)
     public static class maxLengthでtrimなしで改行がCRLFの場合のテスト {
         @DataPoints
-        public static Fixture[] PARAMs = { new Fixture("   ", 2, false), new Fixture("   ", 3, true),
-                new Fixture("   ", 4, true), new Fixture(" a ", 2, false), new Fixture(" a ", 3, true),
-                new Fixture(" a ", 4, true) };
+        public static Fixture[] PARAMs = { new Fixture(null, 1, true), new Fixture("   ", 2, false),
+                new Fixture("   ", 3, true), new Fixture("   ", 4, true), new Fixture(" a ", 2, false),
+                new Fixture(" a ", 3, true), new Fixture(" a ", 4, true) };
 
         private ValidationHelper validationHelper;
 
@@ -212,7 +211,8 @@ public class ValidationHelperTest {
     public static class isIntで両端trimで改行がLFの場合のテスト {
         @DataPoints
         public static Fixture[] PARAMs = { new Fixture("123", true), new Fixture("-123", true),
-                new Fixture("1.0", false), new Fixture("", false), new Fixture(null, false) };
+                new Fixture("1.0", false), new Fixture("", false), new Fixture(null, false), new Fixture(" 123 ", true),
+                new Fixture(" -123 ", true), new Fixture(" 1.0 ", false) };
 
         private ValidationHelper validationHelper;
 
@@ -237,51 +237,44 @@ public class ValidationHelperTest {
         }
     }
 
-    @Test
-    public void isIntで123の場合() throws Exception {
-        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
-        assertThat(validationHelper.isInt("123"), is(true));
-    }
+    @RunWith(Theories.class)
+    public static class isEmKatakanaのテスト {
+        @DataPoints
+        public static Fixture[] PARAMs = { new Fixture(null, UseEmBlank.ALLOW, UseLineBreak.ALLOW, true),
+                new Fixture("", UseEmBlank.ALLOW, UseLineBreak.ALLOW, true),
+                new Fixture("アイウエオ", UseEmBlank.ALLOW, UseLineBreak.DISALLOW, true),
+                new Fixture("アイウエ　オ", UseEmBlank.DISALLOW, UseLineBreak.DISALLOW, false),
+                new Fixture("アイウエ　オ", UseEmBlank.ALLOW, UseLineBreak.DISALLOW, true),
+                new Fixture("アイウエ　\rオ", UseEmBlank.ALLOW, UseLineBreak.ALLOW, true),
+                new Fixture("ｱｲｳｴｵ", UseEmBlank.ALLOW, UseLineBreak.DISALLOW, false),
+                new Fixture(" アイウエオ ", UseEmBlank.ALLOW, UseLineBreak.DISALLOW, true),
+                new Fixture("　アイウエオ　", UseEmBlank.ALLOW, UseLineBreak.DISALLOW, true) };
 
-    @Test
-    public void isIntでマイナス123の場合() throws Exception {
-        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
-        assertThat(validationHelper.isInt("-123"), is(true));
-    }
+        private ValidationHelper validationHelper;
 
-    @Test
-    public void isIntで1点0の場合() throws Exception {
-        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
-        assertThat(validationHelper.isInt("1.0"), is(false));
-    }
+        @Before
+        public void setUp() {
+            validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
+        }
 
-    @Test
-    public void isEmKatakanaでアイウエオの場合() throws Exception {
-        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
-        assertThat(validationHelper.isEmKatakana("アイウエオ", UseEmBlank.DISALLOW, UseLineBreak.DISALLOW), is(true));
-    }
+        @Theory
+        public void isEmKatakana(Fixture fixture) throws Exception {
+            assertThat(validationHelper.isEmKatakana(fixture.str, fixture.useEmBlank, fixture.useLineBreak),
+                    is(fixture.expected));
+        }
 
-    @Test
-    public void isEmKatakanaでアイウエ全角ブランクオで全角ブランクが不許可の場合() throws Exception {
-        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
-        assertThat(validationHelper.isEmKatakana("アイウエ　オ", UseEmBlank.DISALLOW, UseLineBreak.DISALLOW), is(false));
-    }
+        static class Fixture {
+            String str;
+            UseEmBlank useEmBlank;
+            UseLineBreak useLineBreak;
+            boolean expected;
 
-    @Test
-    public void isEmKatakanaでアイウエ全角ブランクオで全角ブランクが許可の場合() throws Exception {
-        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
-        assertThat(validationHelper.isEmKatakana("アイウエ　オ", UseEmBlank.ALLOW, UseLineBreak.DISALLOW), is(true));
-    }
-
-    @Test
-    public void isEmKatakanaでアイウエ全角ブランク改行オで全角ブランクと改行が許可の場合() throws Exception {
-        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
-        assertThat(validationHelper.isEmKatakana("アイウエ　\rオ", UseEmBlank.ALLOW, UseLineBreak.ALLOW), is(true));
-    }
-
-    @Test
-    public void isEmKatakanaで半角カナの場合() throws Exception {
-        ValidationHelper validationHelper = ValidationHelper.getInstance(TrimType.BOTH, LineBreakType.LF);
-        assertThat(validationHelper.isEmKatakana("ｱｲｳｴｵ", UseEmBlank.DISALLOW, UseLineBreak.DISALLOW), is(false));
+            Fixture(String str, UseEmBlank useEmBlank, UseLineBreak useLineBreak, boolean expected) {
+                this.str = str;
+                this.useEmBlank = useEmBlank;
+                this.useLineBreak = useLineBreak;
+                this.expected = expected;
+            }
+        }
     }
 }
