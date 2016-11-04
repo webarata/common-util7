@@ -19,8 +19,6 @@ public enum TrimType {
      * @return trimした文字列
      */
     public String trim(String value) {
-        if (StringUtil.isEmpty(value)) return value;
-
         switch (this) {
         case BOTH:
             return StringUtil.trim(value);
