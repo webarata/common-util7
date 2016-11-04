@@ -15,11 +15,11 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-core:1.3'
 }
 
-group = 'link.webarata3.common'
+group = 'link.webarata3.dro.common'
 version = '0.2.4'
 
 jar {
-    baseName = 'common-util7'
+    baseName = 'android-common-util7'
 }
 
 /* Source作成用のタスク */
