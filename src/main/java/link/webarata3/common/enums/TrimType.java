@@ -28,8 +28,8 @@ public enum TrimType {
             return StringUtil.trimRight(value);
         case NONE:
             return value;
+        default:
+            return value;
         }
-        // ありえない
-        return value;
     }
 }
