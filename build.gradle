@@ -19,7 +19,7 @@ group = 'link.webarata3.dro.common'
 version = '0.2.4'
 
 jar {
-    baseName = 'android-common-util7'
+    baseName = 'dro-common-util7'
 }
 
 /* Source作成用のタスク */
